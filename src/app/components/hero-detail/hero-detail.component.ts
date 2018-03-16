@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Address, Hero, states } from '../../data-model';
 
 @Component({
@@ -7,7 +7,8 @@ import { Address, Hero, states } from '../../data-model';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnChanges {
+  @Input() hero: Hero;
 
   heroForm: FormGroup;
   states = states;
@@ -19,10 +20,14 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges() {
+    this.rebuildForm();
+  }
+
   createForm() {
     this.heroForm = this.fb.group({
       name: ['', Validators.required],
-      address: this.fb.group(new Address()), // <-- a FormGroup with a new address
+      secretLairs: this.fb.array([]),
       power: '',
       sidekick: ''
     });
@@ -31,6 +36,22 @@ export class HeroDetailComponent implements OnInit {
       name: this.hero.name,
       address: this.hero.addresses[0] || new Address()
     });
+  }
+
+  rebuildForm() {
+    this.heroForm.reset({
+      name: this.hero.name
+    });
+    this.setAddresses(this.hero.addresses);
+  }
+
+  setAddresses(addresses: Address[]) {
+    const addressFGs = addresses.map(address => this.fb.group(address));
+    const addressFormArray = this.fb.array(addressFGs);
+    this.heroForm.setControl('secretLairs', addressFormArray);
+  }
+  get secretLairs(): FormArray {
+    return this.heroForm.get('secretLairs') as FormArray;
   }
 
 }
