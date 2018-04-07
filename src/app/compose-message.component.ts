@@ -15,6 +15,7 @@ export class ComposeMessageComponent {
 
     details: string;
     sending = false;
+    message: any;
 
     constructor(private router: Router) { }
 
