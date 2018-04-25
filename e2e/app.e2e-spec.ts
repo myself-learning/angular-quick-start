@@ -1,14 +1,24 @@
 import { AppPage } from './app.po';
+import { PageHelper } from './helper.po';
+import { browser} from 'protractor';
 
 describe('angular-tour-of-heroes App', () => {
   let page: AppPage;
+  let helper: PageHelper;
 
   beforeEach(() => {
     page = new AppPage();
+    helper = new PageHelper();
   });
 
-  it('should display welcome message', () => {
+  it('should display Angular Router', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    // expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('Angular Router');
+    
+    helper.getSelectorByTxt('nav a', 'Login').click();
+    helper.getSelectorByTxt('button', 'Login').click();
+
+    helper.wait();
   });
 });
