@@ -13,6 +13,7 @@ describe('angular-tour-of-heroes App', () => {
 
   it('should display Angular Router', () => {
     page.navigateTo();
+    browser.pause();
     // expect(page.getParagraphText()).toEqual('Welcome to app!');
     expect(page.getParagraphText()).toEqual('Angular Router');
     
