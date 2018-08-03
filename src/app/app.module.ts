@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from "@angular/http";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
@@ -23,10 +23,10 @@ import { TwainComponent } from './components/twain/twain.component';
     TwainComponent
   ],
   imports: [
+    HttpModule
+    HttpClientModule,
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

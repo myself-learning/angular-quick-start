@@ -15,7 +15,7 @@ export class TwainService {
   public quotes:any = new Subject();
   private nextId = 1;
 
-  constructor(public http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   
 
