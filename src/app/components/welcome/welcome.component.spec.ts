@@ -7,6 +7,7 @@ describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
   let fixture: ComponentFixture<WelcomeComponent>;
   let userService;
+  let userServiceStub: Partial<UserService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +22,11 @@ describe('WelcomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
-    userService = TestBed.get(UserService);
+
+    // services
+    // userService = TestBed.get(UserService);
+    userService = fixture.debugElement.injector.get(UserService);
+
     // fixture.detectChanges();
   });
 
@@ -44,6 +49,7 @@ describe('WelcomeComponent', () => {
     expect(component.welcome).not.toContain(userService.user.name);
     expect(component.welcome).toContain("log in");
   });
+
 
 });
 

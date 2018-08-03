@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
 
 
 import { AppComponent } from './app.component';
@@ -7,6 +10,7 @@ import { LightswitchCompComponent } from './components/lightswitch-comp/lightswi
 import { DashboardHeroComponent } from './components/dashboard-hero/dashboard-hero.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { TwainComponent } from './components/twain/twain.component';
 
 
 @NgModule({
@@ -15,10 +19,14 @@ import { BannerComponent } from './components/banner/banner.component';
     LightswitchCompComponent,
     DashboardHeroComponent,
     WelcomeComponent,
-    BannerComponent
+    BannerComponent,
+    TwainComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
