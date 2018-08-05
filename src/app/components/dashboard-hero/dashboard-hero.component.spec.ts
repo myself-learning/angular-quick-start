@@ -11,6 +11,7 @@ describe('DashboardHeroComponent', () => {
   let fixture: ComponentFixture<DashboardHeroComponent>;
   let heroDe: DebugElement;
   let heroEl: HTMLElement;
+  const expectedHero: Hero = { id: 42, name: 'Test Name' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,7 +23,7 @@ describe('DashboardHeroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardHeroComponent);
     component = fixture.componentInstance;
-    const hero: Hero = { id: 42, name: 'Test' };
+    const hero: Hero = expectedHero;
 component.hero = hero;
 
     heroDe = fixture.debugElement.query(By.css('.hero'));
@@ -46,7 +47,6 @@ component.hero = hero;
 
   it('should raise selected event when clicked (click helper)', () => {
     let selectedHero: Hero;
-    const expectedHero: Hero = { id: 42, name: 'Test Name' };
 
     component.hero = expectedHero;
     fixture.detectChanges();
@@ -55,6 +55,15 @@ component.hero = hero;
     click(heroDe); // click helper with DebugElement
     click(heroEl); // click helper with native element
 
+    expect(selectedHero).toBe(expectedHero);
+  });
+
+  it('should raise selected event when clicked (element.click)', () => {
+    let selectedHero: Hero;
+    component.selected.subscribe((hero: Hero) => selectedHero = hero);
+
+    heroEl.click();
+    fixture.detectChanges();
     expect(selectedHero).toBe(expectedHero);
   });
 
