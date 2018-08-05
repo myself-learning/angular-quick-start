@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 
 import { TwainComponent } from './twain.component';
-import { DebugElement } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { TwainService } from './twain.service';
 import { of } from 'rxjs/internal/observable/of';
+import { throwError } from 'rxjs';
 
 describe('TwainComponent', () => {
     let component: TwainComponent;
@@ -49,4 +49,6 @@ describe('TwainComponent', () => {
         expect(quoteEl.textContent).toBe(testQuote);
         expect(getQuoteSpy.calls.any()).toBe(true, 'getQuote called');
     });
+
 });
+
