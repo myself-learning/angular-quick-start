@@ -17,4 +17,8 @@ export class DashboardHeroComponent implements OnInit {
   click() {
     this.selected.emit(this.hero);
   }
+
+  gotoDetail(event) {
+
+  }
 }

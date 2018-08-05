@@ -22,6 +22,9 @@ describe('DashboardHeroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardHeroComponent);
     component = fixture.componentInstance;
+    const hero: Hero = { id: 42, name: 'Test' };
+component.hero = hero;
+
     heroDe = fixture.debugElement.query(By.css('.hero'));
     heroEl = heroDe.nativeElement;
     fixture.detectChanges();
@@ -49,10 +52,10 @@ describe('DashboardHeroComponent', () => {
     fixture.detectChanges();
     component.selected.subscribe(hero => selectedHero = hero);
 
-    // click(heroDe); // click helper with DebugElement
-    // click(heroEl); // click helper with native element
+    click(heroDe); // click helper with DebugElement
+    click(heroEl); // click helper with native element
 
-    // expect(selectedHero).toBe(expectedHero);
+    expect(selectedHero).toBe(expectedHero);
   });
 
 });

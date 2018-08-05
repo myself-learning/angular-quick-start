@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 const quotes = [
   'Always do right. This will gratify some people and astonish the rest.',
@@ -19,10 +20,11 @@ export class TwainService {
 
   // Imaginary todo: get quotes from a remote quote service
   // returns quote after delay simulating server latency
-  getQuote(): Promise<string> {
-    return new Promise(resolve => {
-      setTimeout(() => resolve(this.nextQuote()), 500);
-    });
+  getQuote() {
+    return of('test case');
+    // return new Promise(resolve => {
+    //   setTimeout(() => resolve(this.nextQuote()), 500);
+    // });
   }
 
   private nextQuote() {
