@@ -1,11 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardHeroComponent } from './dashboard-hero.component';
-import { Hero } from "../../hero";
+import { Hero } from '../../hero';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { click } from '../../../testing';
 
 describe('DashboardHeroComponent', () => {
   let component: DashboardHeroComponent;
   let fixture: ComponentFixture<DashboardHeroComponent>;
+  let heroDe: DebugElement;
+  let heroEl: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,6 +22,8 @@ describe('DashboardHeroComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardHeroComponent);
     component = fixture.componentInstance;
+    heroDe = fixture.debugElement.query(By.css('.hero'));
+    heroEl = heroDe.nativeElement;
     fixture.detectChanges();
   });
 
@@ -24,14 +31,28 @@ describe('DashboardHeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it("raises the selected event when clicked ", () => {
-    const hero: Hero = { id: 42, name: "Test" };
+  it('raises the selected event when clicked ', () => {
+    const hero: Hero = { id: 42, name: 'Test' };
     component.hero = hero;
 
     component.selected.subscribe(selectedHero =>
       expect(selectedHero).toBe(hero)
     );
     component.click();
+  });
+
+  it('should raise selected event when clicked (click helper)', () => {
+    let selectedHero: Hero;
+    const expectedHero: Hero = { id: 42, name: 'Test Name' };
+
+    component.hero = expectedHero;
+    fixture.detectChanges();
+    component.selected.subscribe(hero => selectedHero = hero);
+
+    // click(heroDe); // click helper with DebugElement
+    // click(heroEl); // click helper with native element
+
+    // expect(selectedHero).toBe(expectedHero);
   });
 
 });
