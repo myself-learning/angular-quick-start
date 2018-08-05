@@ -1,49 +1,32 @@
-// Mark Twain Quote service gets quotes from server
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, of, throwError, Subject } from 'rxjs';
-import { concat, map, retryWhen, switchMap, take, tap } from 'rxjs/operators';
+const quotes = [
+  'Always do right. This will gratify some people and astonish the rest.',
+  'I have never let my schooling interfere with my education.',
+  'Don\'t go around saying the world owes you a living. The world owes you nothing. It was here first.',
+  'Whenever you find yourself on the side of the majority, it is time to pause and reflect.',
+  'If you tell the truth, you don\'t have to remember anything.',
+  'Clothes make the man. Naked people have little or no influence on society.',
+  'It\'s not the size of the dog in the fight, it\'s the size of the fight in the dog.',
+  'Truth is stranger than fiction, but it is because Fiction is obliged to stick to possibilities; Truth isn\'t.',
+  'The man who does not read good books has no advantage over the man who cannot read them.',
+  'Get your facts first, and then you can distort them as much as you please.',
+];
 
-import { Quote } from './quote';
-
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class TwainService {
-  public quotes: any = new Subject();
-  private nextId = 1;
+  private next = 0;
 
-  constructor() {}
+  // Imaginary todo: get quotes from a remote quote service
+  // returns quote after delay simulating server latency
+  getQuote(): Promise<string> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(this.nextQuote()), 500);
+    });
+  }
 
-  getQuote(): Observable<string> {
-                                   return of('Test Quotes');
-                                   /* return Observable.create(observer => observer.next(this.nextId++)).pipe(
-      // tap((id: number) => console.log(id)),
-      // tap((id: number) => { throw new Error('Simulated server error'); }),
-      switchMap((id: number) => this.http.get<Quote>(`api/quotes/${id}`)),
-      // tap((q : Quote) => console.log(q)),
-      map((q: Quote) => q.quote),
-
-      // `errors` is observable of http.get errors
-      retryWhen(errors =>
-        errors.pipe(
-          switchMap((error: HttpErrorResponse) => {
-            if (error.status === 404) {
-              // Queried for quote that doesn't exist.
-              this.nextId = 1; // retry with quote id:1
-              return of(null); // signal OK to retry
-            }
-            // Some other HTTP error.
-            console.error(error);
-            return throwError("Cannot get Twain quotes from the server");
-          }),
-          take(2),
-          // If a second retry value, then didn't find id:1 and triggers the following error
-          concat(throwError("There are no Twain quotes")) // didn't find id:1
-        )
-      )
-    );  */
+  private nextQuote() {
+    if (this.next === quotes.length) { this.next = 0; }
+    return quotes[this.next++];
   }
 }
