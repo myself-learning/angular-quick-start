@@ -23,7 +23,7 @@ describe('LightswitchCompComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it("#clicked() should toggle #isOn", () => {
+  it('#clicked() should toggle #isOn', () => {
     expect(component.isOn).toBe(false, 'Off at first');
     component.clicked();
 
@@ -31,14 +31,14 @@ describe('LightswitchCompComponent', () => {
     component.clicked();
 
 
-    expect(component.isOn).toBe(false, "Off After second Click");
+    expect(component.isOn).toBe(false, 'Off After second Click');
 
   });
 
   it('#clicked() should set #message to "is on"', () => {
-    expect(component.message).toMatch(/is off/i, "off at first");
+    expect(component.message).toMatch(/is off/i, 'off at first');
     component.clicked();
 
-    expect(component.message).toMatch(/is on/i, "on after clicked");
+    expect(component.message).toMatch(/is on/i, 'on after clicked');
   });
 });
