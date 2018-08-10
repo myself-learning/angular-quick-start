@@ -5,23 +5,19 @@ import { Hero } from '../../hero';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
-  // heroes: Hero[] = [];
+  heroes: Hero[] = [];
 
-  constructor(
-    // private router: Router,
-    private heroService: HeroService) {
+  constructor(private router: Router, private heroService: HeroService) {}
+
+  ngOnInit() {}
+
+  gotoDetail(hero: Hero) {
+    let url = `/heroes/${hero.id}`;
+    this.router.navigateByUrl(url);
   }
-
-  ngOnInit() {
-  }
-
-  gotoDetail(event) {
-
-  }
-
 }
