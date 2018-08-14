@@ -15,6 +15,7 @@ import { DashboardHeroComponent } from '../dashboard-hero/dashboard-hero.compone
 import { HeroService } from '../../services/hero.service';
 import { HeroDetailService } from '../hero-detail/hero-detail.service';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
+import { HttpClient } from 'selenium-webdriver/http';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -44,7 +45,12 @@ describe('DashboardComponent', () => {
     ]);
 
     heroServiceSpy.getHeroes.and.returnValue(of(HEROES));
-    heroDetailServiceSpy.getHero.and.returnValue(of(HEROES[0]));
+    heroDetailServiceSpy.getHero.and.callFake((id) =>{
+      return of(HEROES[id]);
+    }
+    );
+
+    heroDetailServiceSpy.getHero(0).subscribe(data => console.log(data));
 
 
     TestBed.configureTestingModule({
@@ -60,11 +66,12 @@ describe('DashboardComponent', () => {
         HttpClientTestingModule 
       ],
       providers: [
+        HttpClient,
         { provide: HeroService, useValue: heroServiceSpy },
         { provide: HeroDetailService, useValue: heroDetailServiceSpy },
         { provide: Router, useValue: routerSpy }
       ],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -73,14 +80,14 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     
-    dashboardDe = fixture.debugElement;
+    /* dashboardDe = fixture.debugElement;
     dashboardEl = dashboardDe.nativeElement.querySelector('.dashboard');
 
     console.log(dashboardDe.nativeElement.textContent);
 
     fixture.detectChanges();
 
-    console.log(dashboardDe);
+    console.log(dashboardDe); */
   });
 
   it('should create', () => {

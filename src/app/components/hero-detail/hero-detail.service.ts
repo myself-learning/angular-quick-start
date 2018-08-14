@@ -16,7 +16,7 @@ export class HeroDetailService {
     return this.heroService.getHero(id);
   }
 
-  saveHero(hero: Hero) {
-    // return this.heroService.updateHero(hero);
-  }
+  // saveHero(hero: Hero) {
+  //   // return this.heroService.updateHero(hero);
+  // }
 }
