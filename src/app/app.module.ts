@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { TwainComponent } from './components/twain/twain.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroService } from './services/hero.service';
 
 
 @NgModule({
@@ -27,12 +28,12 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
     HeroDetailComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

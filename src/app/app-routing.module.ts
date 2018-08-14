@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { HeroDetailComponent } from "./components/hero-detail/hero-detail.component";
 
 // import { AboutComponent } from "./about/about.component";
 
@@ -7,7 +9,9 @@ import { RouterModule } from "@angular/router";
   imports: [
     RouterModule.forRoot([
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
-    //   { path: "about", component: AboutComponent },
+      { path: "dashboard", component: DashboardComponent },
+      { path: "heroes/:id", component: HeroDetailComponent }
+      //   { path: "about", component: AboutComponent },
     ])
   ],
   exports: [RouterModule] // re-export the module declarations

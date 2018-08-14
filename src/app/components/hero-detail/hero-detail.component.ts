@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HeroDetailService } from './hero-detail.service';
+import { Hero } from '../../hero';
 
 @Component({
   selector: "app-hero-detail",
@@ -8,6 +9,8 @@ import { HeroDetailService } from './hero-detail.service';
   styleUrls: ["./hero-detail.component.css"]
 })
 export class HeroDetailComponent implements OnInit {
+  hero: Hero;
+
   constructor(
     private heroDetailService: HeroDetailService,
     private route: ActivatedRoute,
@@ -20,6 +23,8 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(id: any) {
-    console.log(id);
+    this.heroDetailService.getHero(id).subscribe(hero => {
+      this.hero = hero;
+    });
   }
 }

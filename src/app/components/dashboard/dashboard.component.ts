@@ -12,11 +12,20 @@ import { Hero } from '../../hero';
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
-  constructor(private router: Router, private heroService: HeroService) {}
+  constructor(
+    private router: Router, 
+    private heroService: HeroService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.heroService.getHeroes().subscribe((data) => {
+      this.heroes = data
+      console.log(this.heroes);
+    });
+  }
 
   gotoDetail(hero: Hero) {
+    console.log(hero);
     let url = `/heroes/${hero.id}`;
     this.router.navigateByUrl(url);
   }
