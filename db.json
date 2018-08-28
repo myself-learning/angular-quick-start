@@ -1,0 +1,7 @@
+{
+    "permissions":  [
+        { "id": 1, "screen": "country", "element": "mk-tab-edit", "isView" : true  },
+        { "id": 2, "screen": "country", "element": "mk-tab-edit", "isView" : true  },
+        { "id": 3, "screen": "country", "element": "mk-tab-edit", "isView" : true  }
+    ]
+}

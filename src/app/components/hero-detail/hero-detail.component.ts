@@ -14,8 +14,9 @@ export class HeroDetailComponent implements OnInit {
   constructor(
     private heroDetailService: HeroDetailService,
     private route: ActivatedRoute,
-    // private router: Router
-  ) {}
+    private router: Router
+  )
+  {}
 
   ngOnInit(): void {
     // get hero when `id` param changes
@@ -24,8 +25,16 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(id: any) {
     this.heroDetailService.getHero(id).subscribe(hero => {
-      this.hero = hero;
+      if(hero) {
+        this.hero = hero;
+      } else {
+        this.gotoList();
+      }
+      
     });
   }
-  
+
+  gotoList() {
+    this.router.navigate(["../"], { relativeTo: this.route });
+  }
 }

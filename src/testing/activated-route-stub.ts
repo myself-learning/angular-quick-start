@@ -1,5 +1,8 @@
-import { convertToParamMap, ParamMap, Params } from "@angular/router";
+export { ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
+import { convertToParamMap, ParamMap, Params, NavigationExtras } from "@angular/router";
 import { ReplaySubject } from "rxjs";
+import { Injectable } from '@angular/core';
+
 
 /**
  * An ActivateRoute test double with a `paramMap` observable.
@@ -21,4 +24,9 @@ export class ActivatedRouteStub {
   setParamMap(params?: Params) {
     this.subject.next(convertToParamMap(params));
   }
+}
+
+@Injectable()
+export class RouterStub {
+  navigate(commands: any[], extras?: NavigationExtras) {}
 }

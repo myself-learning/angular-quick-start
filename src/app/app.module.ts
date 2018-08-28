@@ -17,6 +17,12 @@ import { HeroService } from './services/hero.service';
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
+  ],
   declarations: [
     AppComponent,
     LightswitchCompComponent,
@@ -26,12 +32,6 @@ import { HeroService } from './services/hero.service';
     TwainComponent,
     DashboardComponent,
     HeroDetailComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
