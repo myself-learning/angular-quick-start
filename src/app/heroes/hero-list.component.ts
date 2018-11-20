@@ -1,10 +1,10 @@
 // TODO SOMEDAY: Feature Componetized like CrisisCenter
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Hero, HeroService } from './hero.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   template: `
@@ -32,12 +32,13 @@ export class HeroListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.heroes$ = this.route.paramMap
-      .switchMap((params: ParamMap) => {
+    this.heroes$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
         // (+) before `params.get()` turns the string into a number
         this.selectedId = +params.get('id');
         return this.service.getHeroes();
-      });
+      })
+    );
   }
 }
 

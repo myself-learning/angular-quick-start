@@ -1,11 +1,11 @@
-import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { slideInDownAnimation } from '../animations';
 
 import { Hero, HeroService } from './hero.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   template: `
@@ -39,9 +39,10 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.hero$ = this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.service.getHero(params.get('id')));
+    this.hero$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.getHero(params.get('id')))
+    );
   }
 
   gotoHeroes(hero: Hero) {
