@@ -15,12 +15,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'admin',
-        loadChildren: 'app/admin/admin.module#AdminModule',
+        loadChildren: './admin/admin.module#AdminModule',
         canLoad: [AuthGuard]
     },
     {
         path: 'crisis-center',
-        loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
+        loadChildren: './crisis-center/crisis-center.module#CrisisCenterModule',
         data: { preload: false }
     },
     { path: '', redirectTo: '/superheroes', pathMatch: 'full' },
