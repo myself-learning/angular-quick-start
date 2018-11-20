@@ -1,9 +1,9 @@
 <h3 *ngIf="isLoading"><i>Loading heroes ... </i></h3>
 <h3 *ngIf="!isLoading">Select a hero:</h3>
 
-<nav>
+<nav class="nav">
     <button (click)="getHeroes()" class="btn btn-primary">Refresh</button>
-    <a *ngFor="let hero of heroes | async" (click)="select(hero)">{{hero.name}}</a>
+    <a class="nav-link" *ngFor="let hero of heroes | async" (click)="select(hero)">{{hero.name}}</a>
 </nav>
 
 <div *ngIf="selectedHero">
