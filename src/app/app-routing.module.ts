@@ -11,7 +11,7 @@ import { HeroDetailComponent } from "./components/hero-detail/hero-detail.compon
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardComponent },
       { path: "heroes/:id", component: HeroDetailComponent }
-      //   { path: "about", component: AboutComponent },
+      //{ path: "about", component: AboutComponent },
     ])
   ],
   exports: [RouterModule] // re-export the module declarations
