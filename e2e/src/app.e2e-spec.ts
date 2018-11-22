@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { PageHelper } from './helper.po';
+import { PageHelper } from '../helper.po';
 import { browser} from 'protractor';
 
 describe('angular-tour-of-heroes App', () => {
@@ -15,7 +15,7 @@ describe('angular-tour-of-heroes App', () => {
     page.navigateTo();
     browser.pause();
     // expect(page.getParagraphText()).toEqual('Welcome to app!');
-    expect(page.getParagraphText()).toEqual('Angular Router');
+    expect(page.getTitleText()).toEqual("Angular Router");
     
     helper.getSelectorByTxt('nav a', 'Login').click();
     helper.getSelectorByTxt('button', 'Login').click();
