@@ -31,6 +31,7 @@ export class OnChangesComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log("changes-", changes);
     for (let propName in changes) {
       let chng = changes[propName];
       let cur = JSON.stringify(chng.currentValue);
